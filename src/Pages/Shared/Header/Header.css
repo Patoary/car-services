@@ -1,0 +1,23 @@
+.header nav {
+    height: 70px;
+    background-color: rgba(34, 8, 230, 0.643);
+   display: flex;
+   justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.header img{
+    height: 50px;
+    width: 200px;
+    
+
+}
+.header nav a{
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+    font-size: 24px;
+}
+.header nav a:hover{
+    color: goldenrod;
+}
