@@ -2,38 +2,38 @@ import React from 'react';
 import '../Header/Header.css';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logo.png';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import {Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 
 const Header = () => {
     return (
-        <div className='header'>
-            {/* <nav>
-                <div>
-                    <img src={logo} alt="" />
-                </div>
-
-                <div>
-                    <Link to="/home">Home</Link>
-                    <Link to="/services">Services</Link>
-                    <Link to="/experts">Experts</Link>
-                </div>
-             
-            </nav> */}
-
-            <Navbar bg="primary" variant="dark">
-                <Container>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
-                    </Nav>
-                </Container>
-            </Navbar>
-
-
-        </div>
-
+        <>
+        {['lg'].map((expand) => (
+          <Navbar key={expand} bg="primary" expand={expand}>
+            <Container fluid>
+              <Navbar.Brand href="#"  ><img style={{height:'45px'}} src={logo} alt="" /></Navbar.Brand>
+              <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+              <Navbar.Offcanvas
+                id={`offcanvasNavbar-expand-${expand}`}
+                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                placement="end"
+              >
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                    Offcanvas
+                  </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Nav.Link href="#action1">Home</Nav.Link>
+                    <Nav.Link href="#action2">Link</Nav.Link>
+                  </Nav>
+                  
+                </Offcanvas.Body>
+              </Navbar.Offcanvas>
+            </Container>
+          </Navbar>
+        ))}
+      </>
     );
 };
 
