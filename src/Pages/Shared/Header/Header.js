@@ -3,10 +3,19 @@ import '../Header/Header.css';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logo.png';
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+    const [user]= useAuthState(auth);
+
+    const handleSignOut = () =>{
+        signOut(auth);
+    }
     return (
         <>
+        
             {['lg'].map((expand) => (
                 <Navbar key={expand} bg="primary" expand={expand}>
                     <Container fluid>
@@ -25,15 +34,19 @@ const Header = () => {
                                     </Nav.Link>
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
-                            <Offcanvas.Body >
+                            <Offcanvas.Body className='bg-primary'>
                                 <Nav className="justify-content-end flex-grow-1 pe-3 me-auto">
-                                    <Nav.Link as={Link} to='/'>Home</Nav.Link>
-                                    <Nav.Link href='home#experts'>Experts</Nav.Link>
-                                    <Nav.Link href='home#services'>Services</Nav.Link>
+                                    <Nav.Link as={Link} to='/' className='text-white bg-primary'>Home</Nav.Link>
+                                    <Nav.Link href='home#experts' className='text-white'>Experts</Nav.Link>
+                                    <Nav.Link href='home#services' className='text-white'>Services</Nav.Link>
                                 </Nav>
-                                <Nav>
-                                    <Nav.Link as={Link} to='login'>Login</Nav.Link>
-                                </Nav>
+                                {
+                                    user?
+                                    <button onClick={handleSignOut} className='bg-primary text-white border-0'>Sign out</button>
+                                    :
+                                    <Nav>
+                                    <Nav.Link as={Link} to='login' className='text-white'>Login</Nav.Link>
+                                </Nav>}
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
                     </Container>
