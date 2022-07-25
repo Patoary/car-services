@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import './Register.css';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { async } from '@firebase/util';
@@ -17,7 +18,7 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification:true});
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ const Register = () => {
 
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-        console.log('Updated profile');
+        // console.log('Updated profile');
         navigate('/home');
     }
     return (

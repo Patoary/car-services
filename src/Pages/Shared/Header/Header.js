@@ -17,7 +17,7 @@ const Header = () => {
         <>
         
             {['lg'].map((expand) => (
-                <Navbar key={expand} bg="primary" expand={expand}>
+                <Navbar key={expand} bg="primary" className='top-fixed' expand={expand}>
                     <Container fluid>
                         <Navbar.Brand as={Link} to="/"  ><img style={{ height: '45px' }} src={logo} alt="" /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -40,6 +40,13 @@ const Header = () => {
                                     <Nav.Link href='home#experts' className='text-white'>Experts</Nav.Link>
                                     <Nav.Link href='home#services' className='text-white'>Services</Nav.Link>
                                 </Nav>
+                                {
+                                    user && <>
+                                    <Nav.Link className='text-white' as={Link} to='addservice'>Add</Nav.Link>
+                                    <Nav.Link className='text-white' as={Link} to='manage'>Manage</Nav.Link>
+
+                                    </>
+                                }
                                 {
                                     user?
                                     <button onClick={handleSignOut} className='bg-primary text-white border-0'>Sign out</button>
