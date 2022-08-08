@@ -21,7 +21,7 @@ const ManageServices = () => {
     }
     return (
         <div>
-            <h1>Manage your services</h1>
+            <h1 className=''>Manage your services</h1>
             {
                 services.map( service => <div key={service._id}>
                     <h5>{service.name} <button onClick={() => handleDelete(service._id)}>x</button></h5>
