@@ -6,7 +6,7 @@ const AddService = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:4000/service`;
+        const url = `https://fathomless-tundra-66190.herokuapp.com/service`;
         fetch(url,{
             method: 'POST',
             headers: {
